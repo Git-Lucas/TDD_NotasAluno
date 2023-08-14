@@ -12,7 +12,8 @@ namespace TDD_NotasAluno.Tests.Integration
             //DADO
             int idAluno = 1;
             IAlunoData alunoData = new AlunoDataSqlServer(new EfSqlServerAdapter());
-            AlunoService alunoService = new AlunoService(alunoData);
+            INotaData notaData = new NotaDataSqlServer(new EfSqlServerAdapter());
+            AlunoService alunoService = new AlunoService(alunoData, notaData);
 
             //QUANDO
             await alunoService.CalcularMediaAsync(idAluno);

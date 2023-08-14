@@ -13,19 +13,9 @@ namespace TDD_NotasAluno.Infra.Data
             _context = context;
         }
 
-        public async Task<Aluno> GetAlunoByIdAsync(int idAluno, bool include = false)
+        public async Task<Aluno> GetAlunoByIdAsync(int idAluno)
         {
-            Aluno? aluno;
-
-            if (include)
-            {
-                aluno = await _context.Alunos.Include(x => x.Notas)
-                                             .FirstOrDefaultAsync(x => x.Id == idAluno);
-            }
-            else
-            {
-                aluno = await _context.Alunos.FirstOrDefaultAsync(x => x.Id == idAluno);
-            }
+            var aluno = await _context.Alunos.FirstOrDefaultAsync(x => x.Id == idAluno);
 
             if (aluno is not null)
             {
