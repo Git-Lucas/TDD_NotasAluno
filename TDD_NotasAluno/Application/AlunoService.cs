@@ -15,7 +15,9 @@ namespace TDD_NotasAluno.Application
         {
             try
             {
-                return await _alunoData.GetMediaAlunoByIdAsync(idAluno);
+                var aluno = await _alunoData.GetAlunoByIdAsync(idAluno);
+
+                return aluno.Media;
             }
             catch (Exception ex)
             {
@@ -27,7 +29,11 @@ namespace TDD_NotasAluno.Application
         {
             try
             {
-                await _alunoData.CalcularMediaAsync(idAluno);
+                var aluno = await _alunoData.GetAlunoByIdAsync(idAluno, true);
+
+                aluno.CalcularMedia();
+
+                await _alunoData.PutAlunoAsync(idAluno, aluno);
             }
             catch (Exception ex)
             {

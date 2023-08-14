@@ -13,36 +13,40 @@ namespace TDD_NotasAluno.Infra.Data
             _context = context;
         }
 
-        public async Task<float> GetMediaAlunoByIdAsync(int idAluno)
+        public async Task<Aluno> GetAlunoByIdAsync(int idAluno, bool include = false)
         {
-            var aluno = await _context.Alunos.FirstOrDefaultAsync(x => x.Id == idAluno);
+            Aluno? aluno;
+
+            if (include)
+            {
+                aluno = await _context.Alunos.Include(x => x.Notas)
+                                             .FirstOrDefaultAsync(x => x.Id == idAluno);
+            }
+            else
+            {
+                aluno = await _context.Alunos.FirstOrDefaultAsync(x => x.Id == idAluno);
+            }
 
             if (aluno is not null)
             {
-                return aluno.Media;
+                return aluno;
             }
             else
             {
                 throw new Exception("Não encontrado!");
             }
-
         }
 
-        public async Task CalcularMediaAsync(int idAluno)
+        public async Task PutAlunoAsync(int idAluno, Aluno aluno)
         {
-            var aluno = await _context.Alunos.Include(x => x.Notas)
-                                             .FirstOrDefaultAsync(x => x.Id == idAluno);
-
-            if (aluno is not null)
+            if (idAluno == aluno.Id)
             {
-                aluno.CalcularMedia();
-
                 _context.Update(aluno);
                 await _context.SaveChangesAsync();
             }
             else
             {
-                throw new Exception("Não encontrado!");
+                throw new Exception("Erro na requisição!");
             }
         }
     }

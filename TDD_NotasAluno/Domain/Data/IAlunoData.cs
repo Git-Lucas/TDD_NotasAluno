@@ -1,8 +1,10 @@
-﻿namespace TDD_NotasAluno.Domain.Data
+﻿using TDD_NotasAluno.Domain.Model;
+
+namespace TDD_NotasAluno.Domain.Data
 {
     public interface IAlunoData
     {
-        Task<float> GetMediaAlunoByIdAsync(int idAluno);
-        Task CalcularMediaAsync(int idAluno);
+        Task<Aluno> GetAlunoByIdAsync(int idAluno, bool include = false);
+        Task PutAlunoAsync(int idAluno, Aluno aluno);
     }
 }
