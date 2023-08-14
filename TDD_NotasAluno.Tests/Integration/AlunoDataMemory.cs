@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TDD_NotasAluno.Application.Data;
+﻿using TDD_NotasAluno.Application.Data;
 using TDD_NotasAluno.Domain.Model;
 
-namespace TDD_NotasAluno.Tests
+namespace TDD_NotasAluno.Tests.Integration
 {
     public class AlunoDataMemory : IAlunoData
     {

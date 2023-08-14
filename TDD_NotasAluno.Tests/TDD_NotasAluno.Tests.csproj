@@ -26,4 +26,8 @@
     <ProjectReference Include="..\TDD_NotasAluno\TDD_NotasAluno.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Unit\" />
+  </ItemGroup>
+
 </Project>

@@ -1,7 +1,7 @@
 ﻿using TDD_NotasAluno.Application.Data;
 using TDD_NotasAluno.Domain.Model;
 
-namespace TDD_NotasAluno.Tests
+namespace TDD_NotasAluno.Tests.Integration
 {
     public class NotaDataMemory : INotaData
     {
@@ -20,7 +20,7 @@ namespace TDD_NotasAluno.Tests
                 Id = 1,
                 Aluno = Aluno,
                 CodigoExame = "E1",
-                ValorNota = (float)10,
+                ValorNota = 10,
                 PesoNota = (float)0.3
             },
             new()
@@ -28,7 +28,7 @@ namespace TDD_NotasAluno.Tests
                 Id = 2,
                 Aluno = Aluno,
                 CodigoExame = "E2",
-                ValorNota = (float)9,
+                ValorNota = 9,
                 PesoNota = (float)0.3
             },
             new()
@@ -36,7 +36,7 @@ namespace TDD_NotasAluno.Tests
                 Id = 3,
                 Aluno = Aluno,
                 CodigoExame = "E3",
-                ValorNota = (float)8,
+                ValorNota = 8,
                 PesoNota = (float)0.4
             }
         };
