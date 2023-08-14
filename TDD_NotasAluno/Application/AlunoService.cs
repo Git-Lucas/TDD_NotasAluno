@@ -11,6 +11,7 @@ namespace TDD_NotasAluno.Application
             _alunoData = alunoData;
         }
 
+        //USE CASE
         public async Task<float> GetMediaAlunoByIdAsync(int idAluno)
         {
             try
@@ -23,8 +24,9 @@ namespace TDD_NotasAluno.Application
             {
                 throw new Exception(ex.Message);
             }
-        }  
+        }
 
+        //USE CASE
         public async Task CalcularMediaAsync(int idAluno)
         {
             try

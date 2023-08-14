@@ -1,4 +1,4 @@
-namespace TDD_NotasAluno.Tests
+namespace TDD_NotasAluno.Tests.Integration
 {
     public class ApiTest
     {
@@ -14,10 +14,10 @@ namespace TDD_NotasAluno.Tests
 
             //Quando
             var response = await HttpClient.GetAsync($"/alunos/{idAluno}");
-            var output = await response.Content.ReadAsStringAsync();
-            var media = JsonConvert.DeserializeObject<float>(output);
 
             //Então
+            var output = await response.Content.ReadAsStringAsync();
+            var media = JsonConvert.DeserializeObject<float>(output);
             Assert.Equal(9, media);
         }
     }
