@@ -5,6 +5,18 @@
         public int Id { get; set; }
         public string Nome { get; set; }
         public string CodigoCurso { get; set; }
-        public float Media { get; set; }
+        public float Media { get; set; } = 0;
+        public List<Nota> Notas { get; set; } = new();
+
+        public void CalcularMedia()
+        {
+            var totalNotas = (float)0;
+            foreach (var nota in Notas)
+            {
+                totalNotas += nota.ValorNota;
+            }
+
+            Media = totalNotas / Notas.Count();
+        }
     }
 }
