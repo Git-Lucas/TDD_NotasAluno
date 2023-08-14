@@ -1,6 +1,6 @@
 ﻿using TDD_NotasAluno.Domain.Model;
 
-namespace TDD_NotasAluno.Domain.Data
+namespace TDD_NotasAluno.Application.Data
 {
     public interface IAlunoData
     {

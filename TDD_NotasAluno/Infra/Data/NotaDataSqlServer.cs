@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TDD_NotasAluno.Domain.Data;
+using TDD_NotasAluno.Application.Data;
 using TDD_NotasAluno.Domain.Model;
 
 namespace TDD_NotasAluno.Infra.Data

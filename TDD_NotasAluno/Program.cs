@@ -1,5 +1,5 @@
 using TDD_NotasAluno.Application;
-using TDD_NotasAluno.Domain.Data;
+using TDD_NotasAluno.Application.Data;
 using TDD_NotasAluno.Infra.Data;
 
 var builder = WebApplication.CreateBuilder(args);

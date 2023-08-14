@@ -2,28 +2,30 @@
 using TDD_NotasAluno.Application.Data;
 using TDD_NotasAluno.Domain.Model;
 
-namespace TDD_NotasAluno.Infra.Data
+namespace TDD_NotasAluno.Tests
 {
-    public class AlunoDataSqlServer : IAlunoData
+    public class AlunoDataMemory : IAlunoData
     {
-        private readonly EfSqlServerAdapter _context;
-
-        public AlunoDataSqlServer(EfSqlServerAdapter context)
+        public List<Aluno> Alunos { get; set; } = new()
         {
-            _context = context;
-        }
+            new(){
+                Id = 1,
+                Nome = "Lucas de Oliveira",
+                CodigoCurso = "CCCAT12",
+                Media = 0
+            }
+        };
 
         public async Task<Aluno> GetAlunoByIdAsync(int idAluno)
         {
-            var aluno = await _context.Alunos.FirstOrDefaultAsync(x => x.Id == idAluno);
-
+            var aluno = Alunos.FirstOrDefault(x => x.Id == idAluno);
             if (aluno is not null)
             {
                 return aluno;
             }
             else
             {
-                throw new Exception("Não encontrado!");
+                throw new Exception("Não encontrado.");
             }
         }
 
@@ -31,8 +33,9 @@ namespace TDD_NotasAluno.Infra.Data
         {
             if (idAluno == aluno.Id)
             {
-                _context.Update(aluno);
-                await _context.SaveChangesAsync();
+                var alunoMemory = await GetAlunoByIdAsync(idAluno);
+
+                alunoMemory.Media = aluno.Media;
             }
             else
             {

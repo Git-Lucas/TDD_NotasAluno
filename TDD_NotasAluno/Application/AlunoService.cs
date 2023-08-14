@@ -1,4 +1,4 @@
-﻿using TDD_NotasAluno.Domain.Data;
+﻿using TDD_NotasAluno.Application.Data;
 
 namespace TDD_NotasAluno.Application
 {
