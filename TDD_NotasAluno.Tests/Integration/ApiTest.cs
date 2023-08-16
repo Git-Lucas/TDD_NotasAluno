@@ -11,17 +11,16 @@ namespace TDD_NotasAluno.Tests.Integration
             //Dado
             int idAluno = 1;
             string tipoCalculoMedia = "simples";
-            var json = JsonConvert.SerializeObject(tipoCalculoMedia);
-            StringContent httpContent = new StringContent(json);
 
-            await HttpClient.PostAsync($"/alunos/{idAluno}/calculaMedia", httpContent);
+            await HttpClient.PostAsJsonAsync($"/alunos/{idAluno}/calculaMedia", tipoCalculoMedia);
 
             //Quando
             var response = await HttpClient.GetAsync($"/alunos/{idAluno}");
 
             //Então
             var output = await response.Content.ReadAsStringAsync();
-            var media = JsonConvert.DeserializeObject<float>(output);
+            var result = JsonConvert.DeserializeObject<object>(output);
+            float media = (float)result!.GetType().GetProperty("media")!.GetValue(result)!;
             Assert.Equal(9, media);
         }
 
@@ -32,18 +31,17 @@ namespace TDD_NotasAluno.Tests.Integration
             //Dado
             int idAluno = 1;
             string tipoCalculoMedia = "ponderada";
-            var json = JsonConvert.SerializeObject(tipoCalculoMedia);
-            StringContent httpContent = new StringContent(json);
 
-            await HttpClient.PostAsync($"/alunos/{idAluno}/calculaMedia", httpContent);
+            await HttpClient.PostAsJsonAsync($"/alunos/{idAluno}/calculaMedia", tipoCalculoMedia);
 
             //Quando
             var response = await HttpClient.GetAsync($"/alunos/{idAluno}");
 
             //Então
             var output = await response.Content.ReadAsStringAsync();
-            var media = JsonConvert.DeserializeObject<float>(output);
-            Assert.Equal(9, media);
+            var result = JsonConvert.DeserializeObject<object>(output);
+            float media = (float)result!.GetType().GetProperty("media")!.GetValue(result)!;
+            Assert.Equal(8.90, Math.Round(media, 2));
         }
     }
 }

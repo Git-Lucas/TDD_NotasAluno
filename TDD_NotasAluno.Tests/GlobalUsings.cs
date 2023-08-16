@@ -5,3 +5,4 @@ global using TDD_NotasAluno.Application;
 global using TDD_NotasAluno.Application.Data;
 global using TDD_NotasAluno.Domain;
 global using TDD_NotasAluno.Infra.Data;
+global using System.Net.Http.Json;

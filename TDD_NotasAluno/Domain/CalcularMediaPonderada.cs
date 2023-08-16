@@ -9,7 +9,7 @@ namespace TDD_NotasAluno.Domain
             aluno.Media = 0;
             foreach (var nota in aluno.Notas)
             {
-                aluno.Media += nota.ValorNota * nota.PesoNota;
+                aluno.Media += nota.CalcularMediaPonderada();
             }
         }
     }

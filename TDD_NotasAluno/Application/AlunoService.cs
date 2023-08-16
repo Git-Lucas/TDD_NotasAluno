@@ -15,13 +15,20 @@ namespace TDD_NotasAluno.Application
         }
 
         //USE CASE
-        public async Task<float> GetMediaAlunoByIdAsync(int idAluno)
+        public async Task<object> GetMediaAlunoByIdAsync(int idAluno)
         {
             try
             {
                 var aluno = await _alunoData.GetAlunoByIdAsync(idAluno);
+                var media = aluno.Media;
+                var notas = await _notaData.GetNotasByIdAlunoAsync(idAluno);
 
-                return aluno.Media;
+                return new
+                {
+                    media,
+                    notas
+                };
+
             }
             catch (Exception ex)
             {

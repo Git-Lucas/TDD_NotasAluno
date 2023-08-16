@@ -16,7 +16,8 @@
             await alunoService.CalcularMediaAsync(idAluno, "simples");
 
             //ENTÃO
-            var media = await alunoService.GetMediaAlunoByIdAsync(idAluno);
+            var result = await alunoService.GetMediaAlunoByIdAsync(idAluno);
+            float media = (float)result.GetType().GetProperty("media")!.GetValue(result)!;
             Assert.Equal(9, media);
         }
 
@@ -34,7 +35,8 @@
             await alunoService.CalcularMediaAsync(idAluno, "simples");
 
             //ENTÃO
-            var media = await alunoService.GetMediaAlunoByIdAsync(idAluno);
+            var result = await alunoService.GetMediaAlunoByIdAsync(idAluno);
+            float media = (float)result.GetType().GetProperty("media")!.GetValue(result)!;
             Assert.Equal(9, media);
         }
 
@@ -52,8 +54,9 @@
             await alunoService.CalcularMediaAsync(idAluno, "ponderada");
 
             //ENTÃO
-            var media = await alunoService.GetMediaAlunoByIdAsync(idAluno);
-            Assert.Equal(8.90, Math.Round(media, 2));
+            var result = await alunoService.GetMediaAlunoByIdAsync(idAluno);
+            float media = (float)result.GetType().GetProperty("media")!.GetValue(result)!;
+            Assert.Equal(8.9, Math.Round(media, 2));
         }
 
         //Narrow Integration Test
@@ -70,8 +73,9 @@
             await alunoService.CalcularMediaAsync(idAluno, "ponderada");
 
             //ENTÃO
-            var media = await alunoService.GetMediaAlunoByIdAsync(idAluno);
-            Assert.Equal(8.90, Math.Round(media, 2));
+            var result = await alunoService.GetMediaAlunoByIdAsync(idAluno);
+            float media = (float)result.GetType().GetProperty("media")!.GetValue(result)!;
+            Assert.Equal(8.9, Math.Round(media, 2));
         }
     }
 }
