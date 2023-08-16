@@ -1,20 +1,17 @@
-﻿using TDD_NotasAluno.Application;
-using TDD_NotasAluno.Application.Data;
-using TDD_NotasAluno.Infra.Data;
-
-namespace TDD_NotasAluno.Tests.Integration
+﻿namespace TDD_NotasAluno.Tests.Integration
 {
     public class AlunoServiceTest
     {
         //Broad Integration Test
         [Fact]
-        public async void CalcularMediaAlunoSqlServer()
+        public async void CalcularMediaSimplesAlunoSqlServer()
         {
             //DADO
             int idAluno = 1;
             IAlunoData alunoData = new AlunoDataSqlServer(new EfSqlServerAdapter());
             INotaData notaData = new NotaDataSqlServer(new EfSqlServerAdapter());
-            AlunoService alunoService = new AlunoService(alunoData, notaData);
+            ICalcularMedia calcularMedia = new CalcularMediaSimples();
+            AlunoService alunoService = new(alunoData, notaData, calcularMedia);
 
             //QUANDO
             await alunoService.CalcularMediaAsync(idAluno);
@@ -26,13 +23,14 @@ namespace TDD_NotasAluno.Tests.Integration
 
         //Narrow Integration Test
         [Fact]
-        public async void CalcularMediaAlunoMemory()
+        public async void CalcularMediaSimplesAlunoMemory()
         {
             //DADO
             int idAluno = 1;
             IAlunoData alunoData = new AlunoDataMemory();
             INotaData notaData = new NotaDataMemory();
-            AlunoService alunoService = new AlunoService(alunoData, notaData);
+            ICalcularMedia calcularMedia = new CalcularMediaSimples();
+            AlunoService alunoService = new(alunoData, notaData, calcularMedia);
 
             //QUANDO
             await alunoService.CalcularMediaAsync(idAluno);

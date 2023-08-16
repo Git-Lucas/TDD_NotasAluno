@@ -1,5 +1,6 @@
 using TDD_NotasAluno.Application;
 using TDD_NotasAluno.Application.Data;
+using TDD_NotasAluno.Domain;
 using TDD_NotasAluno.Infra.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<EfSqlServerAdapter>();
 builder.Services.AddScoped<IAlunoData, AlunoDataSqlServer>();
 builder.Services.AddScoped<INotaData, NotaDataSqlServer>();
+builder.Services.AddScoped<ICalcularMedia, CalcularMediaSimples>();
 builder.Services.AddScoped<AlunoService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

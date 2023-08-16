@@ -1,4 +1,5 @@
 ﻿using TDD_NotasAluno.Application.Data;
+using TDD_NotasAluno.Domain;
 
 namespace TDD_NotasAluno.Application
 {
@@ -6,11 +7,13 @@ namespace TDD_NotasAluno.Application
     {
         private readonly IAlunoData _alunoData;
         private readonly INotaData _notaData;
+        private readonly ICalcularMedia _calcularMedia;
 
-        public AlunoService(IAlunoData alunoData, INotaData notaData)
+        public AlunoService(IAlunoData alunoData, INotaData notaData, ICalcularMedia calcularMedia)
         {
             _alunoData = alunoData;
             _notaData = notaData;
+            _calcularMedia = calcularMedia;
         }
 
         //USE CASE
@@ -36,7 +39,7 @@ namespace TDD_NotasAluno.Application
                 var aluno = await _alunoData.GetAlunoByIdAsync(idAluno);
 
                 aluno.Notas = await _notaData.GetNotasByIdAlunoAsync(idAluno);
-                aluno.CalcularMedia();
+                _calcularMedia.CalcularMedia(aluno);
 
                 await _alunoData.PutAlunoAsync(idAluno, aluno);
             }
