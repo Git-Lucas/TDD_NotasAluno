@@ -7,13 +7,11 @@ namespace TDD_NotasAluno.Application
     {
         private readonly IAlunoData _alunoData;
         private readonly INotaData _notaData;
-        private readonly ICalcularMedia _calcularMedia;
 
-        public AlunoService(IAlunoData alunoData, INotaData notaData, ICalcularMedia calcularMedia)
+        public AlunoService(IAlunoData alunoData, INotaData notaData)
         {
             _alunoData = alunoData;
             _notaData = notaData;
-            _calcularMedia = calcularMedia;
         }
 
         //USE CASE
@@ -32,14 +30,14 @@ namespace TDD_NotasAluno.Application
         }
 
         //USE CASE
-        public async Task CalcularMediaAsync(int idAluno)
+        public async Task CalcularMediaAsync(int idAluno, string tipoCalculoMedia)
         {
             try
             {
                 var aluno = await _alunoData.GetAlunoByIdAsync(idAluno);
 
                 aluno.Notas = await _notaData.GetNotasByIdAlunoAsync(idAluno);
-                _calcularMedia.CalcularMedia(aluno);
+                CalcularMediaFactory.Create(tipoCalculoMedia).CalcularMedia(aluno);
 
                 await _alunoData.PutAlunoAsync(idAluno, aluno);
             }

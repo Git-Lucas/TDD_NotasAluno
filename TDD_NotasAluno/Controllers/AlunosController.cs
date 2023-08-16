@@ -27,11 +27,11 @@ namespace TDD_NotasAluno.Controllers
         }
 
         [HttpPost("/alunos/{idAluno}/calculaMedia")]
-        public async Task<IActionResult> CalcularMedia([FromRoute] int idAluno)
+        public async Task<IActionResult> CalcularMedia([FromRoute] int idAluno, [FromBody] string tipoCalculoMedia)
         {
             try
             {
-                await _alunoService.CalcularMediaAsync(idAluno);
+                await _alunoService.CalcularMediaAsync(idAluno, tipoCalculoMedia);
                 return Ok();
             }
             catch (Exception ex)
