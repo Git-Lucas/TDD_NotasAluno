@@ -3,7 +3,6 @@
     public class Nota
     {
         public int Id { get; set; }
-        public int AlunoId { get; set; }
         public Aluno Aluno { get; set; }
         public string? CodigoExame { get; set; }
         public float ValorNota { get; set; }

@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using TDD_NotasAluno.Application;
 using TDD_NotasAluno.Application.Data;
 using TDD_NotasAluno.Infra.Data;
@@ -7,8 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers()
-                .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+builder.Services.AddControllers();
 builder.Services.AddDbContext<EfSqlServerAdapter>();
 builder.Services.AddScoped<IAlunoData, AlunoDataSqlServer>();
 builder.Services.AddScoped<INotaData, NotaDataSqlServer>();

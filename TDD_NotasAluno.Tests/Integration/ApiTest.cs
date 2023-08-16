@@ -19,9 +19,13 @@ namespace TDD_NotasAluno.Tests.Integration
 
             //Então
             var output = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<object>(output);
-            float media = (float)result!.GetType().GetProperty("media")!.GetValue(result)!;
+            dynamic obj = JsonConvert.DeserializeObject<ExpandoObject>(output)!;
+
+            float media = (float)obj.media;
             Assert.Equal(9, media);
+
+            var notas = obj.notas;
+            Assert.Equal(3, notas.Count);
         }
 
         [Fact]
@@ -39,9 +43,13 @@ namespace TDD_NotasAluno.Tests.Integration
 
             //Então
             var output = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<object>(output);
-            float media = (float)result!.GetType().GetProperty("media")!.GetValue(result)!;
+            dynamic obj = JsonConvert.DeserializeObject<ExpandoObject>(output)!;
+
+            float media = (float)obj.media;
             Assert.Equal(8.90, Math.Round(media, 2));
+
+            var notas = obj.notas;
+            Assert.Equal(3, notas.Count);
         }
     }
 }

@@ -17,8 +17,12 @@
 
             //ENTÃO
             var result = await alunoService.GetMediaAlunoByIdAsync(idAluno);
+
             float media = (float)result.GetType().GetProperty("media")!.GetValue(result)!;
             Assert.Equal(9, media);
+
+            var notas = (List<Nota>)result.GetType().GetProperty("notas")!.GetValue(result)!;
+            Assert.Equal(3, notas.Count);
         }
 
         //Narrow Integration Test
@@ -36,8 +40,12 @@
 
             //ENTÃO
             var result = await alunoService.GetMediaAlunoByIdAsync(idAluno);
+
             float media = (float)result.GetType().GetProperty("media")!.GetValue(result)!;
             Assert.Equal(9, media);
+
+            var notas = (List<Nota>)result.GetType().GetProperty("notas")!.GetValue(result)!;
+            Assert.Equal(3, notas.Count);
         }
 
         //Broad Integration Test
@@ -55,8 +63,12 @@
 
             //ENTÃO
             var result = await alunoService.GetMediaAlunoByIdAsync(idAluno);
+
             float media = (float)result.GetType().GetProperty("media")!.GetValue(result)!;
             Assert.Equal(8.9, Math.Round(media, 2));
+
+            var notas = (List<Nota>)result.GetType().GetProperty("notas")!.GetValue(result)!;
+            Assert.Equal(3, notas.Count);
         }
 
         //Narrow Integration Test
@@ -74,8 +86,12 @@
 
             //ENTÃO
             var result = await alunoService.GetMediaAlunoByIdAsync(idAluno);
+
             float media = (float)result.GetType().GetProperty("media")!.GetValue(result)!;
             Assert.Equal(8.9, Math.Round(media, 2));
+
+            var notas = (List<Nota>)result.GetType().GetProperty("notas")!.GetValue(result)!;
+            Assert.Equal(3, notas.Count);
         }
     }
 }

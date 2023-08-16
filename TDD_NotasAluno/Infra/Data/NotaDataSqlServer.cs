@@ -15,7 +15,7 @@ namespace TDD_NotasAluno.Infra.Data
 
         public async Task<List<Nota>> GetNotasByIdAlunoAsync(int idAluno)
         {
-            var notas = await _context.Notas.Where(x => x.AlunoId == idAluno).ToListAsync();
+            var notas = await _context.Notas.Where(x => x.Aluno.Id == idAluno).ToListAsync();
 
             if (notas.Any())
             {

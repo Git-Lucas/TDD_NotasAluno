@@ -22,6 +22,7 @@ namespace TDD_NotasAluno.Application
                 var aluno = await _alunoData.GetAlunoByIdAsync(idAluno);
                 var media = aluno.Media;
                 var notas = await _notaData.GetNotasByIdAlunoAsync(idAluno);
+                notas.ForEach(x => x.Aluno = null);
 
                 return new
                 {
