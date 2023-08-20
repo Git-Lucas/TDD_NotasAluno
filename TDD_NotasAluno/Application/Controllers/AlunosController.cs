@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TDD_NotasAluno.Application;
 
-namespace TDD_NotasAluno.Controllers
+namespace TDD_NotasAluno.Application.Controllers
 {
     [ApiController]
     public class AlunosController : ControllerBase
